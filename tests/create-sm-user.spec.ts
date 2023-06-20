@@ -17,10 +17,12 @@ interface SMUserRepository {
 }
 
 class SMUserRepositoryMock implements SMUserRepository {
-    smUserData?: CreateSMUserData
+    public smUserData?: CreateSMUserData
+    public callCount = 0
     
     async create(data: CreateSMUserData): Promise<void> {
         this.smUserData = data
+        this.callCount++
     }
 }
 
@@ -40,5 +42,6 @@ describe('CreateSMUser', () => {
         await SUT.exec(smUser)
 
         expect(smUserRepository.smUserData).toBe(smUser)
+        expect(smUserRepository.callCount).toBe(1)
     })
 })
