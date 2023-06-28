@@ -1,19 +1,13 @@
-import SMUserRepository from '@/data/features/sm-user/repositories/disk/sm-user-repository'
+import SMUserRepositoryDisk from '@/data/features/sm-user/repositories/disk/sm-user-repository-disk'
 import SMUser from '@/domain/models/sm_user'
 import CreateSMUser from '@/domain/usecases/sm-user/create-sm-user'
 import { describe, expect, it } from 'vitest'
 
 type makeSUTOutput = {
     SUT: CreateSMUser,
-    smUserRepository: SMUserRepositoryMock
+    smUserRepository: SMUserRepositoryDiskMock
 }
-const makeSUT = (): makeSUTOutput => {
-    const smUserRepository = new SMUserRepositoryMock()
-    const SUT = new CreateSMUser(smUserRepository)
-
-    return { SUT, smUserRepository }
-}
-class SMUserRepositoryMock implements SMUserRepository {
+class SMUserRepositoryDiskMock implements SMUserRepositoryDisk {
     public smUserData?: SMUser
     public callCount = 0
     
@@ -23,6 +17,14 @@ class SMUserRepositoryMock implements SMUserRepository {
         return new SMUser(data)
     }
 }
+
+const makeSUT = (): makeSUTOutput => {
+    const smUserRepository = new SMUserRepositoryDiskMock()
+    const SUT = new CreateSMUser(smUserRepository)
+
+    return { SUT, smUserRepository }
+}
+
 
 const smUser = new SMUser({ username: 'john_lucas', email: 'john.mendoza@email.com', password: 'john1234' })
 

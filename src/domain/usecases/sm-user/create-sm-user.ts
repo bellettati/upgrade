@@ -1,4 +1,4 @@
-import SMUserRepository from '@/data/features/sm-user/repositories/disk/sm-user-repository'
+import SMUserRepository from '@/data/features/sm-user/repositories/disk/sm-user-repository-disk'
 import SMUser from '@/domain/models/sm_user'
 import { validateOrReject } from 'class-validator'
 
