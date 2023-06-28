@@ -1,14 +1,14 @@
-import SMUserRepository from '@/data/features/sm-user/repositories/disk/sm-user-repository-disk'
+import SMUserService from '@/data/features/sm-user/repositories/sm-user-service'
 import SMUser from '@/domain/models/sm_user'
 import { validateOrReject } from 'class-validator'
 
 class CreateSMUser {
-    constructor(private readonly smUserRepository: SMUserRepository) {}
+    constructor(private readonly smUserService: SMUserService) {}
     
     async exec(smUserData: SMUser): Promise<SMUser> {
         try {
             await validateOrReject(new SMUser(smUserData))
-            return await this.smUserRepository.create(smUserData)
+            return await this.smUserService.create(smUserData)
         } catch(error: any) {
             console.log('error has been thrown')
             throw Error(error)

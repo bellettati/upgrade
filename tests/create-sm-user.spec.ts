@@ -1,12 +1,9 @@
 import SMUserRepositoryDisk from '@/data/features/sm-user/repositories/disk/sm-user-repository-disk'
+import SMUserService from '@/data/features/sm-user/repositories/sm-user-service'
 import SMUser from '@/domain/models/sm_user'
 import CreateSMUser from '@/domain/usecases/sm-user/create-sm-user'
 import { describe, expect, it } from 'vitest'
 
-type makeSUTOutput = {
-    SUT: CreateSMUser,
-    smUserRepository: SMUserRepositoryDiskMock
-}
 class SMUserRepositoryDiskMock implements SMUserRepositoryDisk {
     public smUserData?: SMUser
     public callCount = 0
@@ -18,11 +15,15 @@ class SMUserRepositoryDiskMock implements SMUserRepositoryDisk {
     }
 }
 
+type makeSUTOutput = {
+    SUT: CreateSMUser,
+    smUserDiskRepository: SMUserRepositoryDiskMock
+}
 const makeSUT = (): makeSUTOutput => {
-    const smUserRepository = new SMUserRepositoryDiskMock()
-    const SUT = new CreateSMUser(smUserRepository)
-
-    return { SUT, smUserRepository }
+    const smUserDiskRepository = new SMUserRepositoryDiskMock()
+    const smUserService = new SMUserService(smUserDiskRepository)
+    const SUT = new CreateSMUser(smUserService)
+    return { SUT, smUserDiskRepository }
 }
 
 
@@ -30,12 +31,12 @@ const smUser = new SMUser({ username: 'john_lucas', email: 'john.mendoza@email.c
 
 describe('CreateSMUser', () => {
     it('should create new SMUser', async () => {
-        const { SUT, smUserRepository } = makeSUT()
+        const { SUT, smUserDiskRepository } = makeSUT()
 
         await SUT.exec(smUser)
 
-        expect(smUserRepository.smUserData).toBe(smUser)
-        expect(smUserRepository.callCount).toBe(1)
+        expect(smUserDiskRepository.smUserData).toBe(smUser)
+        expect(smUserDiskRepository.callCount).toBe(1)
     })
 
     it('should throw error when username is inavlid', async () => {
