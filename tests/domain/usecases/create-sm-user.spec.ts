@@ -47,12 +47,22 @@ describe('CreateSMUser', () => {
             .toThrow()
     })
 
-    it('should throw erro when email is invalid', async () => {
+    it('should throw error when email is invalid', async () => {
         const { SUT } = makeSUT()
 
         const smUserInavlidEmail = { ...smUser, email: 'john#email.com' }
 
         await expect(SUT.exec(smUserInavlidEmail))
+            .rejects
+            .toThrow()
+    })
+
+    it('should throw error when password is inavlid', async () => {
+        const { SUT } = makeSUT()
+
+        const smUserInavlidPassword = { ...smUser, password: '1234567' }
+
+        await expect(SUT.exec(smUserInavlidPassword))
             .rejects
             .toThrow()
     })

@@ -13,6 +13,8 @@ class SMUser {
     @IsEmail()
     @Length(5, 150)
     public email: string
+
+    @Length(8, 150)
     public password: string
     
     constructor({ username, email, password }: SMUserData) {

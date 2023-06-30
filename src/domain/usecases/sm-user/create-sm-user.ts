@@ -10,7 +10,6 @@ class CreateSMUser {
             await validateOrReject(new SMUser(smUserData))
             return await this.smUserService.create(smUserData)
         } catch(error: any) {
-            console.log('error has been thrown')
             throw Error(error)
         }
     }
