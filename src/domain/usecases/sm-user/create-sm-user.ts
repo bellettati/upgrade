@@ -6,14 +6,19 @@ class CreateSMUser {
     constructor(private readonly smUserService: SMUserService) {}
     
     async exec(smUserData: SMUser): Promise<SMUser> {
-        const { username } = smUserData
+        const { username, email } = smUserData
 
         try {
             await validateOrReject(new SMUser(smUserData))
             const usernameIsTaken = await this.smUserService.findByUsername(username)
+            const emailIsTaken = await this.smUserService.findByEmail(email)
             
             if(usernameIsTaken) {
                 throw Error('Username is taken')
+            }
+
+            if(emailIsTaken) {
+                throw Error('Email has been taken')
             }
             
             return await this.smUserService.create(smUserData)

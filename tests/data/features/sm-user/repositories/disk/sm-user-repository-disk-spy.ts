@@ -17,6 +17,11 @@ class SMUserRepositoryDiskSpy implements SMUserRepositoryDisk {
         const smUser = this.smUsers.find(user => user.username === username) 
         return smUser ? smUser : null
     }
+
+    async findByEmail(email: string): Promise<SMUser | null> {
+        const smUser = this.smUsers.find(user => user.email === email)
+        return smUser ? smUser : null
+    }
 }
 
 export default SMUserRepositoryDiskSpy

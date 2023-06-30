@@ -11,6 +11,10 @@ class SMUserService {
     async findByUsername(username: string): Promise<SMUser | null> {
         return this.disk.findByUsername(username)
     }
+
+    async findByEmail(email: string): Promise<SMUser | null> {
+        return this.disk.findByEmail(email)
+    }
 }
 
 export default SMUserService
