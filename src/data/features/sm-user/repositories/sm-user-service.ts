@@ -7,6 +7,10 @@ class SMUserService {
     async create(data: SMUser): Promise<SMUser> {
         return this.disk.create(data)
     }
+
+    async findByUsername(username: string): Promise<SMUser | null> {
+        return this.disk.findByUsername(username)
+    }
 }
 
 export default SMUserService

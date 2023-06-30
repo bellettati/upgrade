@@ -66,4 +66,14 @@ describe('CreateSMUser', () => {
             .rejects
             .toThrow()
     })
+
+    it('should throw error when username is already taken', async () => {
+        const { SUT } = makeSUT()
+
+        await SUT.exec(smUser)
+
+        await expect(SUT.exec(smUser))
+            .rejects
+            .toThrow()
+    })
 })
