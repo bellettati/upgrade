@@ -80,11 +80,9 @@ describe('CreateSMUser', () => {
     it('should throw error when email is already taken', async () => {
         const { SUT } = makeSUT()
 
-        const newSmUser = { ...smUser, username: 'patrick' }
+        await SUT.exec({ ...smUser, username: 'patrick' })
 
-        await SUT.exec(smUser)
-
-        await expect(SUT.exec(newSmUser))
+        await expect(SUT.exec(smUser))
             .rejects
             .toThrow()
     })
