@@ -1,4 +1,4 @@
-import { MaxLength, MinLength } from 'class-validator'
+import { IsEmail, Length } from 'class-validator'
 
 type SMUserData = {
     username: string,
@@ -7,9 +7,11 @@ type SMUserData = {
 }
 
 class SMUser {
-    @MinLength(3)
-    @MaxLength(30)
+    @Length(3, 30)
     public username: string
+
+    @IsEmail()
+    @Length(5, 150)
     public email: string
     public password: string
     

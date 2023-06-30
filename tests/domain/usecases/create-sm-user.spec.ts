@@ -46,4 +46,14 @@ describe('CreateSMUser', () => {
             .rejects
             .toThrow()
     })
+
+    it('should throw erro when email is invalid', async () => {
+        const { SUT } = makeSUT()
+
+        const smUserInavlidEmail = { ...smUser, email: 'john#email.com' }
+
+        await expect(SUT.exec(smUserInavlidEmail))
+            .rejects
+            .toThrow()
+    })
 })
