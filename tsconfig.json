@@ -12,8 +12,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@/test/*": [
-        "test/*"
+      "@/tests/*": [
+        "tests/*"
       ],
     },
     "experimentalDecorators": true,
@@ -21,6 +21,6 @@
     "outDir": "./dist",
     "sourceMap": true
   },
-  "include": ["src/**/*", "tests/**/*", "tests/create-sm-user.spec.ts"],
+  "include": ["src/**/*", "tests/**/*", "tests/domain/usecases/create-sm-user.spec.ts"],
   "exclude": ["node_modules"]
 }

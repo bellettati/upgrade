@@ -1,26 +1,19 @@
-import SMUserRepositoryDisk from '@/data/features/sm-user/repositories/disk/sm-user-repository-disk'
+import { setupContainer } from '../../containers/index'
+setupContainer()
+
 import SMUserService from '@/data/features/sm-user/repositories/sm-user-service'
 import SMUser from '@/domain/models/sm_user'
 import CreateSMUser from '@/domain/usecases/sm-user/create-sm-user'
 import { describe, expect, it } from 'vitest'
+import SMUserRepositoryDiskSpy from '../../data/features/sm-user/repositories/disk/sm-user-repository-disk-spy'
 
-class SMUserRepositoryDiskMock implements SMUserRepositoryDisk {
-    public smUserData?: SMUser
-    public callCount = 0
-    
-    async create(data: SMUser): Promise<SMUser> {
-        this.smUserData = data
-        this.callCount++
-        return new SMUser(data)
-    }
-}
 
-type makeSUTOutput = {
+type MakeSUTOutput = {
     SUT: CreateSMUser,
-    smUserDiskRepository: SMUserRepositoryDiskMock
+    smUserDiskRepository: SMUserRepositoryDiskSpy
 }
-const makeSUT = (): makeSUTOutput => {
-    const smUserDiskRepository = new SMUserRepositoryDiskMock()
+const makeSUT = (): MakeSUTOutput => {
+    const smUserDiskRepository = new SMUserRepositoryDiskSpy()
     const smUserService = new SMUserService(smUserDiskRepository)
     const SUT = new CreateSMUser(smUserService)
     return { SUT, smUserDiskRepository }
