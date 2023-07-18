@@ -5,6 +5,12 @@ class App {
 
     constructor() {
         this.express = express()
+
+        this.middleware()
+    }
+
+    private middleware() {
+        this.express.use(express.json())
     }
 }
 

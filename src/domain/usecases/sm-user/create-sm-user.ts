@@ -1,5 +1,5 @@
 import SMUserService from '@/data/features/sm-user/repositories/sm-user-service'
-import SMUser from '@/domain/models/sm_user'
+import SMUser from '@/domain/models/sm-user'
 import { validateOrReject } from 'class-validator'
 
 class CreateSMUser {

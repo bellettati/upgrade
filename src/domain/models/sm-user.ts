@@ -1,6 +1,6 @@
 import { IsEmail, Length } from 'class-validator'
 
-type SMUserData = {
+type SMUserProps = {
     username: string,
     email: string,
     password: string
@@ -17,7 +17,7 @@ class SMUser {
     @Length(8, 150)
     public password: string
     
-    constructor({ username, email, password }: SMUserData) {
+    constructor({ username, email, password }: SMUserProps) {
         this.username = username
         this.email = email
         this.password = password

@@ -1,4 +1,4 @@
-import SMUser from '@/domain/models/sm_user'
+import SMUser from '@/domain/models/sm-user'
 
 interface SMUserRepositoryDisk {
     create(data: SMUser): Promise<SMUser>

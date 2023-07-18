@@ -1,8 +1,5 @@
-import { setupContainer } from '../../containers/index'
-setupContainer()
-
 import SMUserService from '@/data/features/sm-user/repositories/sm-user-service'
-import SMUser from '@/domain/models/sm_user'
+import SMUser from '@/domain/models/sm-user'
 import CreateSMUser from '@/domain/usecases/sm-user/create-sm-user'
 import { describe, expect, it } from 'vitest'
 import SMUserRepositoryDiskSpy from '../../data/features/sm-user/repositories/disk/sm-user-repository-disk-spy'
@@ -57,7 +54,7 @@ describe('CreateSMUser', () => {
             .toThrow()
     })
 
-    it('should throw error when password is inavlid', async () => {
+    it('should throw error when password is invalid', async () => {
         const { SUT } = makeSUT()
 
         const smUserInavlidPassword = { ...smUser, password: '1234567' }

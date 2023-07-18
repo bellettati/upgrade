@@ -1,4 +1,4 @@
-import SMUser from '@/domain/models/sm_user'
+import SMUser from '@/domain/models/sm-user'
 import SMUserRepositoryDisk from './disk/sm-user-repository-disk'
 
 class SMUserService {
