@@ -9,16 +9,13 @@
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "baseUrl": ".",
+    "baseUrl": "src",
     "paths": {
-      "@/*": ["src/*"],
-      "@/tests/*": [
-        "tests/*"
-      ],
+      "@/*": ["*"],
+      "@/tests/*": ["tests/*"]
     },
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "outDir": "./dist",
     "sourceMap": true
   },
   "include": ["src/**/*", "tests/**/*", "tests/domain/usecases/create-sm-user.spec.ts"],
