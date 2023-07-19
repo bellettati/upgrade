@@ -3,7 +3,7 @@ import { Request, Response } from 'express'
 import { CreateSMUserRequestMapper } from './mappers/create-sm-user-request-mapper'
 import { CreateSMUserRequest } from './models/requests/create-sm-user-request'
 
-export class UserController {
+export class SMUserController {
     constructor(
         private readonly createSMUser: CreateSMUser,
         private readonly createSMUserRequestMapper: CreateSMUserRequestMapper

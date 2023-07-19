@@ -17,5 +17,4 @@ export class SMUserRepositoryDiskMongo implements SMUserRepositoryDisk {
         const smUser = await SMUserModel.findOne({ email })
         return smUser
     }
-    
 }
