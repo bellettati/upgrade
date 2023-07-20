@@ -2,11 +2,7 @@ import { SMUser } from '@/domain/models/sm-user'
 import { SMUserRepositoryDisk } from './disk/sm-user-repository-disk'
 
 export class SMUserService {
-    smUserRepositoryDisk: SMUserRepositoryDisk
-
-    constructor({ smUserRepositoryDisk }: any) {
-        this.smUserRepositoryDisk = smUserRepositoryDisk
-    }
+    constructor(private smUserRepositoryDisk: SMUserRepositoryDisk) {}
 
     create = async (data: SMUser): Promise<SMUser> => 
         this.smUserRepositoryDisk.create(data)

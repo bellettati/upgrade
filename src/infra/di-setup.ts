@@ -14,7 +14,7 @@ interface Cradle {
     smUserRepositoryDisk: SMUserRepositoryDisk
 }
 
-const container = createContainer<Cradle>({ injectionMode: InjectionMode.PROXY })
+const container = createContainer<Cradle>({ injectionMode: InjectionMode.CLASSIC })
 
 const setupContainer = () => {
     container.register({

@@ -3,10 +3,7 @@ import { SMUser } from '@/domain/models/sm-user'
 import { validateOrReject } from 'class-validator'
 
 export class CreateSMUser {
-    smUserService: SMUserService
-    constructor({ smUserService }: any) {
-        this.smUserService = smUserService
-    }
+    constructor(private smUserService: SMUserService) {}
     
     public exec = async (smUserData: SMUser): Promise<SMUser> => {
         const { username, email } = smUserData

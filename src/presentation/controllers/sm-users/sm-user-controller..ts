@@ -3,22 +3,11 @@ import { CreateSMUserRequest } from './models/requests/create-sm-user-request'
 import { CreateSMUserRequestMapper } from './mappers/create-sm-user-request-mapper'
 import { CreateSMUser } from '@/domain/usecases/sm-user/create-sm-user'
 
-interface SMUserControllerProps {
-    createSMUser: CreateSMUser 
-    createSMUserRequestMapper: CreateSMUserRequestMapper
-}
-
 export class SMUserController {
-    createSMUser: CreateSMUser 
-    createSMUserRequestMapper: CreateSMUserRequestMapper
-
-    constructor({ 
-        createSMUser, 
-        createSMUserRequestMapper 
-    }: SMUserControllerProps) {
-        this.createSMUser = createSMUser
-        this.createSMUserRequestMapper = createSMUserRequestMapper
-    }
+    constructor( 
+        private createSMUser: CreateSMUser, 
+        private createSMUserRequestMapper: CreateSMUserRequestMapper 
+    ) {}
     
     create = async (req: Request, res: Response): Promise<Response> => {
         try {
