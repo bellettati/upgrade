@@ -1,6 +1,6 @@
 import { BaseMapper } from '@/infra/base/base-mapper'
 import { CreateSMUserRequest } from '../models/requests/create-sm-user-request'
-import SMUser from '@/domain/models/sm-user'
+import { SMUser } from '@/domain/models/sm-user'
 
 export class CreateSMUserRequestMapper extends BaseMapper<CreateSMUserRequest, SMUser> {
     modelToData(model: SMUser): CreateSMUserRequest {

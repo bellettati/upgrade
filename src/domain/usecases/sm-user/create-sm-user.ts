@@ -1,11 +1,14 @@
-import SMUserService from '@/data/features/sm-user/repositories/sm-user-service'
-import SMUser from '@/domain/models/sm-user'
+import { SMUserService } from '@/data/features/sm-user/repositories/sm-user-service'
+import { SMUser } from '@/domain/models/sm-user'
 import { validateOrReject } from 'class-validator'
 
-class CreateSMUser {
-    constructor(private readonly smUserService: SMUserService) {}
+export class CreateSMUser {
+    smUserService: SMUserService
+    constructor({ smUserService }: any) {
+        this.smUserService = smUserService
+    }
     
-    async exec(smUserData: SMUser): Promise<SMUser> {
+    public exec = async (smUserData: SMUser): Promise<SMUser> => {
         const { username, email } = smUserData
 
         try {
@@ -27,5 +30,3 @@ class CreateSMUser {
         }
     }
 }
-
-export default CreateSMUser

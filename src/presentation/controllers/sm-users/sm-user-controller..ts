@@ -1,15 +1,26 @@
-import CreateSMUser from '@/domain/usecases/sm-user/create-sm-user'
 import { Request, Response } from 'express'
-import { CreateSMUserRequestMapper } from './mappers/create-sm-user-request-mapper'
 import { CreateSMUserRequest } from './models/requests/create-sm-user-request'
+import { CreateSMUserRequestMapper } from './mappers/create-sm-user-request-mapper'
+import { CreateSMUser } from '@/domain/usecases/sm-user/create-sm-user'
+
+interface SMUserControllerProps {
+    createSMUser: CreateSMUser 
+    createSMUserRequestMapper: CreateSMUserRequestMapper
+}
 
 export class SMUserController {
-    constructor(
-        private readonly createSMUser: CreateSMUser,
-        private readonly createSMUserRequestMapper: CreateSMUserRequestMapper
-    ) {}
+    createSMUser: CreateSMUser 
+    createSMUserRequestMapper: CreateSMUserRequestMapper
 
-    async create(req: Request, res: Response) {
+    constructor({ 
+        createSMUser, 
+        createSMUserRequestMapper 
+    }: SMUserControllerProps) {
+        this.createSMUser = createSMUser
+        this.createSMUserRequestMapper = createSMUserRequestMapper
+    }
+    
+    create = async (req: Request, res: Response): Promise<Response> => {
         try {
             const request = new CreateSMUserRequest(req.body)
             const smUser = await this.createSMUser.exec(
@@ -17,7 +28,7 @@ export class SMUserController {
             )
             return res.json(smUser)
         } catch(err: any) {
-            res.status(500).json(err.message)
+            return res.status(500).json(err.message)
         }
     }
 }

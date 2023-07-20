@@ -6,7 +6,7 @@ type SMUserProps = {
     password: string
 }
 
-class SMUser {
+export class SMUser {
     @Length(3, 30)
     public username: string
 
@@ -23,5 +23,3 @@ class SMUser {
         this.password = password
     }
 }
-
-export default SMUser

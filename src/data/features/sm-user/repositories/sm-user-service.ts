@@ -1,20 +1,19 @@
-import SMUser from '@/domain/models/sm-user'
-import SMUserRepositoryDisk from './disk/sm-user-repository-disk'
+import { SMUser } from '@/domain/models/sm-user'
+import { SMUserRepositoryDisk } from './disk/sm-user-repository-disk'
 
-class SMUserService {
-    constructor(private readonly disk: SMUserRepositoryDisk) {}
+export class SMUserService {
+    smUserRepositoryDisk: SMUserRepositoryDisk
 
-    async create(data: SMUser): Promise<SMUser> {
-        return this.disk.create(data)
+    constructor({ smUserRepositoryDisk }: any) {
+        this.smUserRepositoryDisk = smUserRepositoryDisk
     }
 
-    async findByUsername(username: string): Promise<SMUser | null> {
-        return this.disk.findByUsername(username)
-    }
-
-    async findByEmail(email: string): Promise<SMUser | null> {
-        return this.disk.findByEmail(email)
-    }
+    create = async (data: SMUser): Promise<SMUser> => 
+        this.smUserRepositoryDisk.create(data)
+    
+    findByUsername = async (username: string): Promise<SMUser | null> => 
+        this.smUserRepositoryDisk.findByUsername(username)
+    
+    findByEmail = async (email: string): Promise<SMUser | null> => 
+        this.smUserRepositoryDisk.findByEmail(email)
 }
-
-export default SMUserService

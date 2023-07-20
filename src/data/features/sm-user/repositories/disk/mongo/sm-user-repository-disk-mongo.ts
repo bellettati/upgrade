@@ -1,20 +1,14 @@
-import SMUser from '@/domain/models/sm-user'
-import SMUserRepositoryDisk from '../sm-user-repository-disk'
 import { SMUserModel } from './models/sm-user-mongo'
+import { SMUserRepositoryDisk } from '../sm-user-repository-disk'
+import { SMUser } from '@/domain/models/sm-user'
 
 export class SMUserRepositoryDiskMongo implements SMUserRepositoryDisk {
-    async create(data: SMUser): Promise<SMUser> {
-        const smUser = await SMUserModel.create(data)
-        return smUser    
-    }
+    create = async (data: SMUser): Promise<SMUser> =>
+        await SMUserModel.create(data)
 
-    async findByUsername(username: string): Promise<SMUser | null> {
-        const smUser = await SMUserModel.findOne({ username })
-        return smUser
-    }
+    findByUsername = async (username: string): Promise<SMUser| null> =>
+        await SMUserModel.findOne({ username })
 
-    async findByEmail(email: string): Promise<SMUser | null> {
-        const smUser = await SMUserModel.findOne({ email })
-        return smUser
-    }
+    findByEmail = async (email: string): Promise<SMUser| null> => 
+        await SMUserModel.findOne({ email })
 }
