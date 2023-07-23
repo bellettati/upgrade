@@ -1,8 +1,8 @@
-import SMUserService from '@/data/features/sm-user/repositories/sm-user-service'
-import SMUser from '@/domain/models/sm-user'
-import CreateSMUser from '@/domain/usecases/sm-user/create-sm-user'
 import { describe, expect, it } from 'vitest'
 import SMUserRepositoryDiskSpy from '../../data/features/sm-user/repositories/disk/sm-user-repository-disk-spy'
+import { CreateSMUser } from '@/domain/usecases/sm-user/create-sm-user'
+import { SMUserService } from '@/data/features/sm-user/repositories/sm-user-service'
+import { SMUser } from '@/domain/models/sm-user'
 
 
 type MakeSUTOutput = {

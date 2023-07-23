@@ -1,5 +1,5 @@
-import SMUserRepositoryDisk from '@/data/features/sm-user/repositories/disk/sm-user-repository-disk'
-import SMUser from '@/domain/models/sm-user'
+import { SMUserRepositoryDisk } from '@/data/features/sm-user/repositories/disk/sm-user-repository-disk'
+import { SMUser } from '@/domain/models/sm-user'
 
 class SMUserRepositoryDiskSpy implements SMUserRepositoryDisk {
     public smUserData?: SMUser
